@@ -47,16 +47,18 @@ def askInput(prompt, number=False, unit=False):
                 askInput(prompt, number, unit)
             else: 
                 return line
+        else:
+            return line
 
-## Functions for conversions
+## Functions for conversions (using kelvin as a base)
 def kelvin(num, unit):
     num = float(num)
     returnVal = num
-    if unit == UNITS['temperature']['c']:
+    if unit == UNITS['temperature']['c']['val']:
         returnVal = (num + 273.15)
-    elif unit == UNITS['temperature']['k']:
+    elif unit == UNITS['temperature']['k']['val']:
         returnVal = num
-    elif unit == UNITS['temperature']['f']:
+    elif unit == UNITS['temperature']['f']['val']:
         returnVal = ((num - 32) * (5/9) + 273.15)
     elif unit == UNITS['temperature']['r']:
         returnVal = (num * (5/9))
@@ -65,49 +67,13 @@ def kelvin(num, unit):
     return prepNum(returnVal)
 
 def fahrenheit(num, unit):
-    num = float(num)
-    returnVal = num
-    if unit == UNITS['temperature']['c']:
-        returnVal = (num * (9/5)) + 32
-    elif unit == UNITS['temperature']['k']:
-        returnVal = ((9/5) * num - 273.15) + 32
-    elif unit == UNITS['temperature']['f']:
-        returnVal = num
-    elif unit == UNITS['temperature']['r']:
-        returnVal = (num - 459.67)
-    else:
-        raise ValueError('Unit of incorrect type')
-    return prepNum(returnVal)
+    return prepNum(((9/5) * float(kelvin(num, unit)) - 273.15) + 32)
 
 def celsius(num, unit):
-    num = float(num)
-    returnVal = num
-    if unit == UNITS['temperature']['c']:
-        returnVal = num
-    elif unit == UNITS['temperature']['k']:
-        returnVal = (num - 273.15)
-    elif unit == UNITS['temperature']['f']:
-        returnVal = (num - 32) / (9/5)
-    elif unit == UNITS['temperature']['r']:
-        returnVal = (num - 491.67) * (5/9)
-    else:
-        raise ValueError('Unit of incorrect type')
-    return prepNum(returnVal)
+    return prepNum(float(kelvin(num, unit)) - 273.15)
 
 def rankine(num, unit):
-    num = float(num)
-    returnVal = num
-    if unit == UNITS['temperature']['c']:
-        returnVal = (num + 273.15) * (9/5)
-    elif unit == UNITS['temperature']['k']:
-        returnVal = (num * (9/5))
-    elif unit == UNITS['temperature']['f']:
-        returnVal = (num + 459.67)
-    elif unit == UNITS['temperature']['r']:
-        returnVal = num
-    else:
-        raise ValueError('Unit of incorrect type')
-    return prepNum(returnVal)
+    return prepNum(float(kelvin(num, unit)) * (9/5))
 
 
 
@@ -160,7 +126,7 @@ UNITS = {
 }
 
 # main script
-val = askInput('Please enter a numerical value')
-unit = askInput('Please enter a unit')
+val = askInput('Please enter a numerical value', True)
+print(celsius(val, 'fahrenheit'))
 
 
