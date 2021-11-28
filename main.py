@@ -86,6 +86,8 @@ def askInput(prompt, number=False, unit=False):
                 if UNITS['temperature'][item]['val'] == line:
                     validUnit = True
             if not validUnit:
+                return line
+                # TODO could implement checking if the inputted unit is valid b4 conversion
                 print('Please enter a valid unit of measurement')
                 askInput(prompt, number, unit)
             else: 
