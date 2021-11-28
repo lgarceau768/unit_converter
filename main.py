@@ -7,6 +7,10 @@ SIGNIFICANT_FIGS = 2
 ## Helper Functions
 # Function to chop off extra decimals
 def prepNum(num):
+    if num == None:
+        raise ValueError('Num cannot be null')
+    if num == '':
+        return num
     line = str(num)
     if line.find('.') == -1:
         return line
@@ -125,8 +129,10 @@ UNITS = {
     }
 }
 
-# main script
-val = askInput('Please enter a numerical value', True)
-print(celsius(val, 'fahrenheit'))
+if __name__ == '__main__':
+    # main script
+    while True:
+        val = askInput('Please enter a numerical value', True)
+        print(celsius(val, 'fahrenheit'))
 
 
