@@ -3,6 +3,7 @@
 # Date: 11/23/2021
 # Flexion Code Challenge v3.2
 SIGNIFICANT_FIGS = 2
+ROUNDING_ERROR = 0.05
 
 ## Units Variable
 UNITS = {
@@ -114,13 +115,20 @@ def getUnit(inputVal):
 
 # Function to validate student input
 def validateStudent(num, startUnit, targetUnit, studentInput):
-    # need to pull out the conversion function from the units table
-    [tUnit, unitFamily] = getUnit(targetUnit)
-    answerVal = UNITS[unitFamily][tUnit]['convert'](num, startUnit)
-    if answerVal == studentInput:
-        print('correct')
-    else:
-        print('incorrect')  
+    # need to pull out the conversion function from the units table    
+    try:       
+        [tUnit, unitFamily] = getUnit(targetUnit.lower())
+        answerVal = UNITS[unitFamily][tUnit]['convert'](num, startUnit.lower()) 
+        try:
+            isWithinRoundingError = float(studentInput) >= (float(answerVal) - ROUNDING_ERROR) and float(studentInput) <= (float(answerVal) + ROUNDING_ERROR)
+        except:
+            return 'incorrect'
+        if isWithinRoundingError:
+            return 'correct'
+        else:
+            return 'incorrect'  
+    except:
+        return 'invalid'
 
 ## Functions for conversions (using kelvin and liters as a base)
 def kelvin(num, unit):
@@ -207,12 +215,12 @@ for item in UNITS['volume']:
 
 
 # main script
-if __name__ == 'main':
+if __name__ == '__main__':
     while True:
-        validateStudent(
+        print(validateStudent(
             askInput('Please enter a numerical value', True),
             askInput('Please enter a unit of measure', False, True),
             askInput('Please enter the target unit of measure', False, True),
             askInput('Please enter the student answer', True)
-        )
+        ))
 
