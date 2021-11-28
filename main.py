@@ -45,6 +45,10 @@ UNITS = {
 ## Helper Functions
 # Function to chop off extra decimals
 def prepNum(num):
+    if num == None:
+        raise ValueError('Num cannot be null')
+    if num == '':
+        return num
     line = str(num)
     if line.find('.') == -1:
         return line
@@ -203,10 +207,12 @@ for item in UNITS['volume']:
 
 
 # main script
-validateStudent(
-    askInput('Please enter a numerical value', True),
-    askInput('Please enter a unit of measure', False, True),
-    askInput('Please enter the target unit of measure', False, True),
-    str(543.87)
-)
+if __name__ == 'main':
+    while True:
+        validateStudent(
+            askInput('Please enter a numerical value', True),
+            askInput('Please enter a unit of measure', False, True),
+            askInput('Please enter the target unit of measure', False, True),
+            askInput('Please enter the student answer', True)
+        )
 
