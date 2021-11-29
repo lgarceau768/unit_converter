@@ -18,4 +18,6 @@ This list of software is only required to run the test.py functionality not for 
 # Testing  
 In order to test the application you must download the source code and then follow these steps.  
 1. Navigate to the unit conversion directory within a terminal  
-2. Run python test.py
+2. Run python test.py  
+3. (Optional) You can run the test and pass the output to the echo command to output the text to a file as such  
+`python test.py >> tests/testRun#.txt`  
