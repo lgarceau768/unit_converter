@@ -680,9 +680,9 @@
   ('_py_abc',
    'c:\\users\\ltgar\\appdata\\local\\programs\\python\\python39\\lib\\_py_abc.py',
    'PYMODULE'),
-  ('tracemalloc',
-   'c:\\users\\ltgar\\appdata\\local\\programs\\python\\python39\\lib\\tracemalloc.py',
-   'PYMODULE'),
   ('stringprep',
    'c:\\users\\ltgar\\appdata\\local\\programs\\python\\python39\\lib\\stringprep.py',
+   'PYMODULE'),
+  ('tracemalloc',
+   'c:\\users\\ltgar\\appdata\\local\\programs\\python\\python39\\lib\\tracemalloc.py',
    'PYMODULE')])
