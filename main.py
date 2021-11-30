@@ -142,7 +142,7 @@ def kelvin(num, unit):
         returnVal = num
     elif unit == UNITS['temperature']['f']['val']:
         returnVal = ((num - 32) * (5/9) + 273.15)
-    elif unit == UNITS['temperature']['r']:
+    elif unit == UNITS['temperature']['r']['val']:
         returnVal = (num * (5/9))
     else:
         raise ValueError('Unit of incorrect type')
